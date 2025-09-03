@@ -1,0 +1,22 @@
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: true
+        type: string
+        description: Node.js version to use for the job.
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: Set up Node.js version ${{inputs.node-version}}
+              uses: actions/setup-node@v4
+              with:
+                node-version: ${{ inputs.node-version }}
+            - name: Install dependencies
+              run: npm install
+            
+
+        
